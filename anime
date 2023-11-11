@@ -1,0 +1,71 @@
+#!/bin/bash
+
+
+
+cd /tmp
+
+
+##uso;
+# primero se escribe el número del capítulo que quieres ver
+# y de seguido el nombre del anime, si tiene espacios debe rellenarse 
+# con guiones.
+
+touch links
+mkdir mu3
+
+    wget -p https://www3.animeflv.net/ver/$1-$2 >links
+
+    
+    cat /tmp/www3.animeflv.net/ver/$1-$2 | grep url | grep -oP "https:.*?\"" | sed -e 's/"//' 
+
+    echo links que suelen funcionar: \n
+
+    cat /tmp/www3.animeflv.net/ver/$1-$2 | grep url | grep -oP "https:.*?\"" | sed -e 's/"//' | grep streamwish
+    bueno="$(cat /tmp/www3.animeflv.net/ver/$1-$2 | grep url | grep -oP "https:.*?\"" | sed -e 's/"//' | grep streamwish)"
+
+    cd mu3
+
+    pwd
+
+    otra= echo "$bueno" | awk -F "/" '{print $5}'
+    echo "$otra"
+        
+    # hayq eu crear el wget con la dirección default concatenada a la variable bueno 
+    # para poder descargar el archivo y ya de ahí sacar el mu3
+
+    wget --user-agent="Mozilla" "https://streamwish.to/e/$(echo "$bueno" | awk -F "/" '{print $5}')"
+
+
+
+
+
+
+
+#    cap1= ls .
+
+#    echo el nombre del archivo es "$cap1"
+
+    cap=$(cat "$(echo "$bueno" | awk -F "/" '{print $5}')" | grep source | grep -oP "https://.*?\"" | sed -e 's/"//' )
+
+    echo url del cap:"$cap"
+
+    vlc "$cap" & disown
+
+    
+
+#wget --user-agent="Mozilla" https://jkanime.net/$2/$1/
+
+#cat index.html | grep video | grep -oP "https://.*?\"" | grep -v jkanime | sed -e 's/"//' | grep -v js | grep -v jpg 
+
+
+
+
+#cat index.html | grep video | grep -oP "https://.*?\"" | grep -v jkanime | sed -e 's/"//' | grep -v js | grep -v jpg 
+
+#cat index.html | grep video | grep -oP "https://.*?\"" | grep -v jkanime | sed -e 's/"//' | grep -v js | grep -v jpg 
+#
+
+
+cd ..
+rm -r mu3
+rm -r links
