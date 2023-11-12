@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+cd /tmp
+
+wget --user-agent="Mozilla" -p https://jkanime.net/$1/$2
+
+
+cd jkanime.net
+
+#cat um.php* | grep url | sed -e 's/url: /\n/g' -e 's/\n//g' -e "s/'//g" -e "s/,//g" -e "s/ //g" | head -n1
+ls 
+vlc "$(cat um.php* | grep url | sed -e 's/url: /\n/g' -e 's/\n//g' -e "s/'//g" -e "s/,//g" -e "s/ //g" | head -n1)" & disown
+
+echo este estring es el numero3
+slep 4
+
+cd ..
+rm -r jkanime.net
