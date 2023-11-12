@@ -1,4 +1,4 @@
-# Anime-term-
+# Anime-term
 English:
 
 A link extractor from animeflv or jkanime (it works by the same way)
