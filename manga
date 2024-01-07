@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+cd /tmp
+mkdir manga
+cd manga
+
+#el comando para descargar la
+#wget --user-agen="Mozilla" ""
+#
+wget --user-agent="Mozilla" "https://dragontranslation.net/leer/$1-$2"
+
+
+cat $1-$2 | sed -e 's/"/\n/g' | grep "imageshack" >> archivo
+# descarga las imagenes
+for i in {1..$(echo "$(cat archivo | wc -l)/2" | bc)}; 
+do 
+    wget "$(sed "${i}q;d" archivo)"; 
+done
+
+# gestion de imagenes duplicadas
+cat archivo | awk -F "/" '{print $6}' >> imagenes_duplicadas
+# gestion de imagenes 
+for i in {1..$(echo "$(cat imagenes_duplicadas | wc -l)/2" | bc)};
+do 
+    echo "$(sed -n "$(echo -n $i)p" imagenes_duplicadas)">> imagenes;
+done
+
+#for i in {1..$(cat imagenes | wc -l)};
+#do 
+#    imv "$(sed -n "$(echo -n $i)p" imagenes)";
+#done
+
+touch carrusel
+for i in {1..$(cat imagenes | wc -l)};
+do 
+    echo -n "$(sed -n "$(echo -n $i)p" imagenes) ">> carrusel;
+done
+
+imv $(cat carrusel) && disown
+
+
+cd ..
+rm -r manga

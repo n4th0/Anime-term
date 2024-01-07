@@ -9,11 +9,15 @@ watch, and the second one is the number of the chapter you wanna get.
 The script throws the links from that chapter. It has a list of the servers who are more 
 stable. From this servers it extract the m3u8 file and launch it with VLC visualizer.
 
+I added a new script called manga, it works by the same way as animeflv script, but it displays
+a jpg image using imv comand. The configuration that I recomend to use this script are in my dotfiles
+./config/imv/config.
+
 Example:
 (data base from anime flv):
  ---    animeflv naruto 5
 
-(base base from jkanime):
+(data base from jkanime):
  ---    animejk naruto 5
 
 Español:
@@ -24,6 +28,10 @@ del capítulo del que quieres obtener los links
 
 El script te muestra los links disponibles. Sobre estos links se filtran los más estables
 y se extrae el archivo m3u8 y se ejecuta con VLC player.
+
+He añadido un nuevo script llamado manga, funciona de la misma forma que el script animeflv, pero 
+te muestra el manga espeficado usando el comando imv. Para usar este programa de la forma adecuada 
+recomiendo mirar mis dotfiles en especial la carpeta imv.
  
 
 Ejemplo:
