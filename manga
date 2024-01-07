@@ -18,7 +18,7 @@ do
 done
 
 # gestion de imagenes duplicadas
-cat archivo | awk -F "/" '{print $6}' >> imagenes_duplicadas
+cat archivo | awk -F "/" '{print $NF}' >> imagenes_duplicadas
 # gestion de imagenes 
 for i in {1..$(echo "$(cat imagenes_duplicadas | wc -l)/2" | bc)};
 do 
